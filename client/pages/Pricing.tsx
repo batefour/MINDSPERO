@@ -226,15 +226,15 @@ export default function Pricing() {
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 md:p-16 text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">
+          <h2 className="text-4xl md:text-5xl font-bold text-primary-foreground">
             Ready to Unlock Audio Tutoring?
           </h2>
-          <p className="text-primary-foreground/90 max-w-2xl mx-auto">
+          <p className="text-primary-foreground/90 max-w-2xl mx-auto text-xl">
             Start with a free 30-day trial. No credit card required.
           </p>
           <Link
             to="/register"
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary-foreground text-primary rounded-lg hover:opacity-90 transition font-bold"
+            className="inline-flex items-center justify-center px-8 py-4 bg-primary-foreground text-primary rounded-lg hover:opacity-90 transition font-bold text-lg"
           >
             Start Free Trial
             <ArrowRight className="w-5 h-5 ml-2" />
