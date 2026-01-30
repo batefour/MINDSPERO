@@ -1,5 +1,12 @@
 import { Link } from "react-router-dom";
-import { Users, TrendingUp, CreditCard, LogOut, Settings, BarChart3 } from "lucide-react";
+import {
+  Users,
+  TrendingUp,
+  CreditCard,
+  LogOut,
+  Settings,
+  BarChart3,
+} from "lucide-react";
 
 export default function AdminDashboard() {
   return (
@@ -20,15 +27,37 @@ export default function AdminDashboard() {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold text-foreground mb-8">Admin Dashboard</h1>
+        <h1 className="text-3xl font-bold text-foreground mb-8">
+          Admin Dashboard
+        </h1>
 
         {/* Key Metrics */}
         <div className="grid md:grid-cols-4 gap-4 mb-8">
           {[
-            { icon: Users, label: "Total Users", value: "1,234", change: "+12%" },
-            { icon: TrendingUp, label: "Subscribed Users", value: "456", change: "+8%" },
-            { icon: CreditCard, label: "Total Revenue", value: "GHS 187,440", change: "+25%" },
-            { icon: BarChart3, label: "Monthly Revenue", value: "GHS 68,505", change: "+15%" },
+            {
+              icon: Users,
+              label: "Total Users",
+              value: "1,234",
+              change: "+12%",
+            },
+            {
+              icon: TrendingUp,
+              label: "Subscribed Users",
+              value: "456",
+              change: "+8%",
+            },
+            {
+              icon: CreditCard,
+              label: "Total Revenue",
+              value: "GHS 187,440",
+              change: "+25%",
+            },
+            {
+              icon: BarChart3,
+              label: "Monthly Revenue",
+              value: "GHS 68,505",
+              change: "+15%",
+            },
           ].map((metric, i) => {
             const Icon = metric.icon;
             return (
@@ -37,10 +66,14 @@ export default function AdminDashboard() {
                 className="bg-background border border-border rounded-lg p-6 space-y-2"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground">{metric.label}</span>
+                  <span className="text-sm text-muted-foreground">
+                    {metric.label}
+                  </span>
                   <Icon className="w-5 h-5 text-primary" />
                 </div>
-                <p className="text-2xl font-bold text-foreground">{metric.value}</p>
+                <p className="text-2xl font-bold text-foreground">
+                  {metric.value}
+                </p>
                 <p className="text-sm text-green-600">{metric.change}</p>
               </div>
             );
@@ -54,9 +87,21 @@ export default function AdminDashboard() {
             <h2 className="text-xl font-bold text-foreground">Recent Users</h2>
             <div className="space-y-2">
               {[
-                { name: "Alice Johnson", email: "alice@example.com", status: "subscribed" },
-                { name: "Bob Smith", email: "bob@example.com", status: "trial" },
-                { name: "Charlie Brown", email: "charlie@example.com", status: "free" },
+                {
+                  name: "Alice Johnson",
+                  email: "alice@example.com",
+                  status: "subscribed",
+                },
+                {
+                  name: "Bob Smith",
+                  email: "bob@example.com",
+                  status: "trial",
+                },
+                {
+                  name: "Charlie Brown",
+                  email: "charlie@example.com",
+                  status: "free",
+                },
               ].map((user, i) => (
                 <div
                   key={i}
@@ -64,7 +109,9 @@ export default function AdminDashboard() {
                 >
                   <div>
                     <p className="text-foreground font-medium">{user.name}</p>
-                    <p className="text-sm text-muted-foreground">{user.email}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {user.email}
+                    </p>
                   </div>
                   <span
                     className={`px-3 py-1 rounded-full text-xs font-medium ${

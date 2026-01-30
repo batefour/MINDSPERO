@@ -3,7 +3,9 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 export default function Pricing() {
-  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
+  const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">(
+    "monthly",
+  );
 
   return (
     <div className="min-h-screen bg-background">
@@ -17,10 +19,16 @@ export default function Pricing() {
             <span className="text-lg font-bold text-foreground">MindSpero</span>
           </Link>
           <div className="flex items-center gap-4">
-            <Link to="/login" className="px-4 py-2 text-foreground hover:text-primary transition">
+            <Link
+              to="/login"
+              className="px-4 py-2 text-foreground hover:text-primary transition"
+            >
               Login
             </Link>
-            <Link to="/register" className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition">
+            <Link
+              to="/register"
+              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
+            >
               Sign Up
             </Link>
           </div>
@@ -34,7 +42,8 @@ export default function Pricing() {
             Simple, Transparent Pricing
           </h1>
           <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that works for you. Start free with PDF summaries, upgrade anytime for audio tutoring.
+            Choose the plan that works for you. Start free with PDF summaries,
+            upgrade anytime for audio tutoring.
           </p>
         </div>
 
@@ -74,13 +83,23 @@ export default function Pricing() {
           {/* Free Plan */}
           <div className="bg-background rounded-2xl p-8 border border-border space-y-6">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">Free</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">Perfect to get started</p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                Free
+              </h3>
+              <p className="text-muted-foreground text-sm sm:text-base">
+                Perfect to get started
+              </p>
             </div>
             <div className="space-y-2">
-              <p className="text-muted-foreground text-xs sm:text-sm font-semibold">Price</p>
-              <p className="text-3xl sm:text-4xl font-bold text-foreground">GHS 0</p>
-              <p className="text-muted-foreground text-xs sm:text-sm">Forever</p>
+              <p className="text-muted-foreground text-xs sm:text-sm font-semibold">
+                Price
+              </p>
+              <p className="text-3xl sm:text-4xl font-bold text-foreground">
+                GHS 0
+              </p>
+              <p className="text-muted-foreground text-xs sm:text-sm">
+                Forever
+              </p>
             </div>
             <button className="w-full py-2 sm:py-3 border border-border rounded-lg text-foreground hover:bg-muted transition font-semibold text-sm sm:text-base">
               Get Started
@@ -107,23 +126,39 @@ export default function Pricing() {
               Most Popular
             </div>
             <div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">Pro</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">For dedicated learners</p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                Pro
+              </h3>
+              <p className="text-muted-foreground text-sm sm:text-base">
+                For dedicated learners
+              </p>
             </div>
             <div className="space-y-2">
-              <p className="text-muted-foreground text-xs sm:text-sm font-semibold">Price</p>
+              <p className="text-muted-foreground text-xs sm:text-sm font-semibold">
+                Price
+              </p>
               {billingPeriod === "monthly" ? (
                 <div className="flex items-baseline gap-1 sm:gap-2">
-                  <p className="text-3xl sm:text-4xl font-bold text-foreground">GHS 150</p>
-                  <span className="text-muted-foreground text-xs sm:text-base">/month</span>
+                  <p className="text-3xl sm:text-4xl font-bold text-foreground">
+                    GHS 150
+                  </p>
+                  <span className="text-muted-foreground text-xs sm:text-base">
+                    /month
+                  </span>
                 </div>
               ) : (
                 <div className="flex items-baseline gap-1 sm:gap-2">
-                  <p className="text-3xl sm:text-4xl font-bold text-foreground">GHS 1,440</p>
-                  <span className="text-muted-foreground text-xs sm:text-base">/year</span>
+                  <p className="text-3xl sm:text-4xl font-bold text-foreground">
+                    GHS 1,440
+                  </p>
+                  <span className="text-muted-foreground text-xs sm:text-base">
+                    /year
+                  </span>
                 </div>
               )}
-              <p className="text-xs sm:text-sm text-primary font-semibold pt-2">+30 days free per purchase</p>
+              <p className="text-xs sm:text-sm text-primary font-semibold pt-2">
+                +30 days free per purchase
+              </p>
             </div>
             <Link
               to="/register"
@@ -155,13 +190,23 @@ export default function Pricing() {
           {/* Team Plan */}
           <div className="bg-background rounded-2xl p-8 border border-border space-y-6">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">Team</h3>
-              <p className="text-muted-foreground text-sm sm:text-base">For schools & organizations</p>
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                Team
+              </h3>
+              <p className="text-muted-foreground text-sm sm:text-base">
+                For schools & organizations
+              </p>
             </div>
             <div className="space-y-2">
-              <p className="text-muted-foreground text-xs sm:text-sm font-semibold">Price</p>
-              <p className="text-2xl sm:text-3xl font-bold text-foreground">Custom</p>
-              <p className="text-muted-foreground text-xs sm:text-sm">Contact us for details</p>
+              <p className="text-muted-foreground text-xs sm:text-sm font-semibold">
+                Price
+              </p>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">
+                Custom
+              </p>
+              <p className="text-muted-foreground text-xs sm:text-sm">
+                Contact us for details
+              </p>
             </div>
             <a
               href="mailto:team@academicai.com"
@@ -214,9 +259,16 @@ export default function Pricing() {
                 a: "Yes! Annual plans come with a discount, and you get an extra month free with any Pro purchase.",
               },
             ].map((item, i) => (
-              <div key={i} className="bg-background border border-border rounded-lg p-4 sm:p-6">
-                <h3 className="font-bold text-foreground mb-2 text-sm sm:text-base">{item.q}</h3>
-                <p className="text-muted-foreground text-xs sm:text-sm">{item.a}</p>
+              <div
+                key={i}
+                className="bg-background border border-border rounded-lg p-4 sm:p-6"
+              >
+                <h3 className="font-bold text-foreground mb-2 text-sm sm:text-base">
+                  {item.q}
+                </h3>
+                <p className="text-muted-foreground text-xs sm:text-sm">
+                  {item.a}
+                </p>
               </div>
             ))}
           </div>

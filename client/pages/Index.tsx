@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, Zap, Headphones, CheckCircle } from "lucide-react";
+import {
+  ArrowRight,
+  FileText,
+  Zap,
+  Headphones,
+  CheckCircle,
+} from "lucide-react";
 
 export default function Index() {
   return (
@@ -42,7 +48,9 @@ export default function Index() {
                 Your Personal AI Study Companion
               </h1>
               <p className="text-lg text-muted-foreground">
-                Upload your lecture notes, get instant summaries, and unlock personalized audio explanations. Transform how you study with AI-powered insights.
+                Upload your lecture notes, get instant summaries, and unlock
+                personalized audio explanations. Transform how you study with
+                AI-powered insights.
               </p>
             </div>
 
@@ -82,7 +90,9 @@ export default function Index() {
             </div>
             <div className="relative z-10 text-center space-y-4">
               <FileText className="w-24 h-24 text-primary mx-auto opacity-50" />
-              <p className="text-muted-foreground">Drag and drop your PDF notes</p>
+              <p className="text-muted-foreground">
+                Drag and drop your PDF notes
+              </p>
             </div>
           </div>
         </div>
@@ -106,9 +116,12 @@ export default function Index() {
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                 <FileText className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">1. Upload Notes</h3>
+              <h3 className="text-xl font-bold text-foreground">
+                1. Upload Notes
+              </h3>
               <p className="text-muted-foreground">
-                Upload any PDF from your lectures, textbooks, or study materials. Our system accepts documents of any size.
+                Upload any PDF from your lectures, textbooks, or study
+                materials. Our system accepts documents of any size.
               </p>
             </div>
 
@@ -117,9 +130,12 @@ export default function Index() {
               <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
                 <Zap className="w-6 h-6 text-secondary" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">2. AI Summarization</h3>
+              <h3 className="text-xl font-bold text-foreground">
+                2. AI Summarization
+              </h3>
               <p className="text-muted-foreground">
-                Get instant AI-powered summaries of your notes. Completely free. Perfect for quick review and understanding key concepts.
+                Get instant AI-powered summaries of your notes. Completely free.
+                Perfect for quick review and understanding key concepts.
               </p>
             </div>
 
@@ -128,9 +144,12 @@ export default function Index() {
               <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
                 <Headphones className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">3. Audio Tutoring</h3>
+              <h3 className="text-xl font-bold text-foreground">
+                3. Audio Tutoring
+              </h3>
               <p className="text-muted-foreground">
-                Subscribe to unlock personalized audio explanations. Listen to detailed explanations of your notes anytime, anywhere.
+                Subscribe to unlock personalized audio explanations. Listen to
+                detailed explanations of your notes anytime, anywhere.
               </p>
             </div>
           </div>
@@ -168,7 +187,9 @@ export default function Index() {
             </div>
             <div className="relative z-10 text-center space-y-4">
               <Headphones className="w-24 h-24 text-secondary mx-auto opacity-50" />
-              <p className="text-muted-foreground">Listen to personalized explanations</p>
+              <p className="text-muted-foreground">
+                Listen to personalized explanations
+              </p>
             </div>
           </div>
         </div>
@@ -181,7 +202,8 @@ export default function Index() {
             Ready to Transform Your Learning?
           </h2>
           <p className="text-primary-foreground/90 max-w-2xl mx-auto text-lg">
-            Start with free PDF summaries today. Upgrade anytime to unlock personalized audio tutoring.
+            Start with free PDF summaries today. Upgrade anytime to unlock
+            personalized audio tutoring.
           </p>
           <Link
             to="/register"
@@ -200,8 +222,8 @@ export default function Index() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">
-              M
-            </div>
+                  M
+                </div>
                 <span className="font-bold text-foreground">MindSpero</span>
               </div>
               <p className="text-muted-foreground">
@@ -211,22 +233,46 @@ export default function Index() {
             <div>
               <h4 className="font-bold text-foreground mb-4">Product</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><Link to="/" className="hover:text-primary">Features</Link></li>
-                <li><Link to="/pricing" className="hover:text-primary">Pricing</Link></li>
+                <li>
+                  <Link to="/" className="hover:text-primary">
+                    Features
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/pricing" className="hover:text-primary">
+                    Pricing
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-foreground mb-4">Company</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">About</a></li>
-                <li><a href="#" className="hover:text-primary">Contact</a></li>
+                <li>
+                  <a href="#" className="hover:text-primary">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-primary">
+                    Contact
+                  </a>
+                </li>
               </ul>
             </div>
             <div>
               <h4 className="font-bold text-foreground mb-4">Legal</h4>
               <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Privacy</a></li>
-                <li><a href="#" className="hover:text-primary">Terms</a></li>
+                <li>
+                  <a href="#" className="hover:text-primary">
+                    Privacy
+                  </a>
+                </li>
+                <li>
+                  <a href="#" className="hover:text-primary">
+                    Terms
+                  </a>
+                </li>
               </ul>
             </div>
           </div>

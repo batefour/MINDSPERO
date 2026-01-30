@@ -43,9 +43,9 @@ export default function Dashboard() {
     },
   ]);
 
-  const [activeTab, setActiveTab] = useState<"uploads" | "subscription" | "settings">(
-    "uploads"
-  );
+  const [activeTab, setActiveTab] = useState<
+    "uploads" | "subscription" | "settings"
+  >("uploads");
 
   // Get user data (placeholder)
   const userSubscriptionStatus = "active";
@@ -120,7 +120,9 @@ export default function Dashboard() {
             <div className="bg-primary/10 rounded-lg p-4 space-y-2">
               <div className="flex items-center gap-2">
                 <Zap className="w-4 h-4 text-primary" />
-                <span className="text-sm font-medium text-foreground">Pro Trial Active</span>
+                <span className="text-sm font-medium text-foreground">
+                  Pro Trial Active
+                </span>
               </div>
               <p className="text-xs text-muted-foreground">
                 {trialDaysLeft} days left
@@ -135,7 +137,9 @@ export default function Dashboard() {
             <div className="p-6 md:p-8 space-y-8">
               {/* Upload Section */}
               <div className="space-y-4">
-                <h1 className="text-3xl font-bold text-foreground">My Uploads</h1>
+                <h1 className="text-3xl font-bold text-foreground">
+                  My Uploads
+                </h1>
                 <p className="text-muted-foreground">
                   Upload your PDF notes and get instant summaries
                 </p>
@@ -166,15 +170,21 @@ export default function Dashboard() {
               <div className="grid md:grid-cols-3 gap-4">
                 <div className="bg-background border border-border rounded-lg p-6 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Total Uploads</span>
+                    <span className="text-sm text-muted-foreground">
+                      Total Uploads
+                    </span>
                     <FileText className="w-5 h-5 text-primary" />
                   </div>
-                  <p className="text-3xl font-bold text-foreground">{totalUploads}</p>
+                  <p className="text-3xl font-bold text-foreground">
+                    {totalUploads}
+                  </p>
                 </div>
 
                 <div className="bg-background border border-border rounded-lg p-6 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Summaries Made</span>
+                    <span className="text-sm text-muted-foreground">
+                      Summaries Made
+                    </span>
                     <Zap className="w-5 h-5 text-secondary" />
                   </div>
                   <p className="text-3xl font-bold text-foreground">5</p>
@@ -182,7 +192,9 @@ export default function Dashboard() {
 
                 <div className="bg-background border border-border rounded-lg p-6 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Audio Available</span>
+                    <span className="text-sm text-muted-foreground">
+                      Audio Available
+                    </span>
                     <Headphones className="w-5 h-5 text-accent" />
                   </div>
                   <p className="text-3xl font-bold text-foreground">2</p>
@@ -191,7 +203,9 @@ export default function Dashboard() {
 
               {/* Recent Uploads */}
               <div className="space-y-4">
-                <h2 className="text-xl font-bold text-foreground">Recent Uploads</h2>
+                <h2 className="text-xl font-bold text-foreground">
+                  Recent Uploads
+                </h2>
                 <div className="space-y-2">
                   {pdfs.map((pdf) => (
                     <div
@@ -237,15 +251,21 @@ export default function Dashboard() {
           {activeTab === "subscription" && (
             <div className="p-6 md:p-8 space-y-8">
               <div className="space-y-2">
-                <h1 className="text-3xl font-bold text-foreground">Subscription</h1>
-                <p className="text-muted-foreground">Manage your subscription and billing</p>
+                <h1 className="text-3xl font-bold text-foreground">
+                  Subscription
+                </h1>
+                <p className="text-muted-foreground">
+                  Manage your subscription and billing
+                </p>
               </div>
 
               {/* Current Plan */}
               <div className="bg-gradient-to-br from-primary/10 to-secondary/10 border border-primary/20 rounded-2xl p-8 space-y-6">
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground">Current Plan</p>
-                  <h2 className="text-3xl font-bold text-foreground">Pro Trial</h2>
+                  <h2 className="text-3xl font-bold text-foreground">
+                    Pro Trial
+                  </h2>
                 </div>
 
                 <div className="grid md:grid-cols-3 gap-6">
@@ -253,16 +273,24 @@ export default function Dashboard() {
                     <p className="text-sm text-muted-foreground mb-2">Status</p>
                     <div className="flex items-center gap-2">
                       <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                      <span className="text-foreground font-medium">Active</span>
+                      <span className="text-foreground font-medium">
+                        Active
+                      </span>
                     </div>
                   </div>
                   <div>
-                    <p className="text-sm text-muted-foreground mb-2">Trial Days Left</p>
-                    <p className="text-foreground font-bold text-2xl">{trialDaysLeft}</p>
+                    <p className="text-sm text-muted-foreground mb-2">
+                      Trial Days Left
+                    </p>
+                    <p className="text-foreground font-bold text-2xl">
+                      {trialDaysLeft}
+                    </p>
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-2">Renews</p>
-                    <p className="text-foreground font-medium">In {trialDaysLeft} days</p>
+                    <p className="text-foreground font-medium">
+                      In {trialDaysLeft} days
+                    </p>
                   </div>
                 </div>
 
@@ -273,7 +301,9 @@ export default function Dashboard() {
 
               {/* Features */}
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-foreground">What's Included</h3>
+                <h3 className="text-xl font-bold text-foreground">
+                  What's Included
+                </h3>
                 <div className="grid md:grid-cols-2 gap-4">
                   {[
                     "Unlimited PDF uploads",
@@ -298,11 +328,15 @@ export default function Dashboard() {
 
               {/* Payment History */}
               <div className="space-y-4">
-                <h3 className="text-xl font-bold text-foreground">Payment History</h3>
+                <h3 className="text-xl font-bold text-foreground">
+                  Payment History
+                </h3>
                 <div className="space-y-2">
                   <div className="flex items-center justify-between p-4 bg-background border border-border rounded-lg">
                     <div>
-                      <p className="text-foreground font-medium">Trial started</p>
+                      <p className="text-foreground font-medium">
+                        Trial started
+                      </p>
                       <p className="text-sm text-muted-foreground">Free</p>
                     </div>
                     <p className="text-foreground font-medium">GHS 0.00</p>
@@ -316,7 +350,9 @@ export default function Dashboard() {
             <div className="p-6 md:p-8 space-y-8">
               <div className="space-y-2">
                 <h1 className="text-3xl font-bold text-foreground">Settings</h1>
-                <p className="text-muted-foreground">Manage your account preferences</p>
+                <p className="text-muted-foreground">
+                  Manage your account preferences
+                </p>
               </div>
 
               {/* Account Settings */}
@@ -350,9 +386,14 @@ export default function Dashboard() {
 
               {/* Danger Zone */}
               <div className="space-y-4">
-                <h3 className="text-lg font-bold text-destructive">Danger Zone</h3>
+                <h3 className="text-lg font-bold text-destructive">
+                  Danger Zone
+                </h3>
                 <div className="bg-destructive/5 border border-destructive/20 rounded-lg p-6 space-y-4">
-                  <p className="text-foreground">Once you delete your account, there is no going back. Please be certain.</p>
+                  <p className="text-foreground">
+                    Once you delete your account, there is no going back. Please
+                    be certain.
+                  </p>
                   <button className="px-4 py-2 bg-destructive text-destructive-foreground rounded-lg hover:opacity-90 transition font-medium">
                     Delete Account
                   </button>
