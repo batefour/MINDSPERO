@@ -30,10 +30,10 @@ export default function Pricing() {
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center space-y-6 mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
+          <h1 className="text-5xl md:text-6xl font-bold text-foreground">
             Simple, Transparent Pricing
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Choose the plan that works for you. Start free with PDF summaries, upgrade anytime for audio tutoring.
           </p>
         </div>
@@ -43,7 +43,7 @@ export default function Pricing() {
           <div className="inline-flex items-center gap-2 bg-muted p-1 rounded-lg">
             <button
               onClick={() => setBillingPeriod("monthly")}
-              className={`px-6 py-2 rounded-md font-medium transition ${
+              className={`px-6 py-3 rounded-md font-semibold text-lg transition ${
                 billingPeriod === "monthly"
                   ? "bg-background text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -53,7 +53,7 @@ export default function Pricing() {
             </button>
             <button
               onClick={() => setBillingPeriod("yearly")}
-              className={`px-6 py-2 rounded-md font-medium transition flex items-center gap-2 ${
+              className={`px-6 py-3 rounded-md font-semibold text-lg transition flex items-center gap-2 ${
                 billingPeriod === "yearly"
                   ? "bg-background text-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -74,27 +74,27 @@ export default function Pricing() {
           {/* Free Plan */}
           <div className="bg-background rounded-2xl p-8 border border-border space-y-6">
             <div>
-              <h3 className="text-2xl font-bold text-foreground">Free</h3>
-              <p className="text-muted-foreground">Perfect to get started</p>
+              <h3 className="text-4xl font-bold text-foreground">Free</h3>
+              <p className="text-muted-foreground text-lg">Perfect to get started</p>
             </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-sm">Price</p>
-              <p className="text-4xl font-bold text-foreground">GHS 0</p>
-              <p className="text-muted-foreground text-sm">Forever</p>
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-base font-semibold">Price</p>
+              <p className="text-5xl font-bold text-foreground">GHS 0</p>
+              <p className="text-muted-foreground text-base">Forever</p>
             </div>
-            <button className="w-full py-2.5 border border-border rounded-lg text-foreground hover:bg-muted transition font-medium">
+            <button className="w-full py-3 border border-border rounded-lg text-foreground hover:bg-muted transition font-semibold text-lg">
               Get Started
             </button>
-            <div className="space-y-3 border-t border-border pt-6">
-              <div className="flex gap-3 items-center text-foreground">
+            <div className="space-y-4 border-t border-border pt-6">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>PDF uploads</span>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>AI summaries</span>
               </div>
-              <div className="flex gap-3 items-center text-muted-foreground">
+              <div className="flex gap-3 items-center text-muted-foreground text-base">
                 <div className="w-5 h-5" />
                 <span>Audio tutoring</span>
               </div>
@@ -107,45 +107,45 @@ export default function Pricing() {
               Most Popular
             </div>
             <div>
-              <h3 className="text-2xl font-bold text-foreground">Pro</h3>
-              <p className="text-muted-foreground">For dedicated learners</p>
+              <h3 className="text-4xl font-bold text-foreground">Pro</h3>
+              <p className="text-muted-foreground text-lg">For dedicated learners</p>
             </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-sm">Price</p>
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-base font-semibold">Price</p>
               {billingPeriod === "monthly" ? (
-                <div className="flex items-baseline gap-1">
-                  <p className="text-4xl font-bold text-foreground">GHS 150</p>
-                  <span className="text-muted-foreground">/month</span>
+                <div className="flex items-baseline gap-2">
+                  <p className="text-5xl font-bold text-foreground">GHS 150</p>
+                  <span className="text-muted-foreground text-lg">/month</span>
                 </div>
               ) : (
-                <div className="flex items-baseline gap-1">
-                  <p className="text-4xl font-bold text-foreground">GHS 1,440</p>
-                  <span className="text-muted-foreground">/year</span>
+                <div className="flex items-baseline gap-2">
+                  <p className="text-5xl font-bold text-foreground">GHS 1,440</p>
+                  <span className="text-muted-foreground text-lg">/year</span>
                 </div>
               )}
-              <p className="text-sm text-primary font-medium pt-2">+30 days free per purchase</p>
+              <p className="text-base text-primary font-semibold pt-2">+30 days free per purchase</p>
             </div>
             <Link
               to="/register"
-              className="w-full py-2.5 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition font-medium flex items-center justify-center gap-2"
+              className="w-full py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition font-semibold text-lg flex items-center justify-center gap-2"
             >
               Start Free Trial
               <ArrowRight className="w-4 h-4" />
             </Link>
-            <div className="space-y-3 border-t border-border pt-6">
-              <div className="flex gap-3 items-center text-foreground">
+            <div className="space-y-4 border-t border-border pt-6">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>Everything in Free</span>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>Audio explanations</span>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>Download summaries</span>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>Priority support</span>
               </div>
@@ -155,34 +155,34 @@ export default function Pricing() {
           {/* Team Plan */}
           <div className="bg-background rounded-2xl p-8 border border-border space-y-6">
             <div>
-              <h3 className="text-2xl font-bold text-foreground">Team</h3>
-              <p className="text-muted-foreground">For schools & organizations</p>
+              <h3 className="text-4xl font-bold text-foreground">Team</h3>
+              <p className="text-muted-foreground text-lg">For schools & organizations</p>
             </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-sm">Price</p>
-              <p className="text-2xl font-bold text-foreground">Custom</p>
-              <p className="text-muted-foreground text-sm">Contact us for details</p>
+            <div className="space-y-2">
+              <p className="text-muted-foreground text-base font-semibold">Price</p>
+              <p className="text-4xl font-bold text-foreground">Custom</p>
+              <p className="text-muted-foreground text-base">Contact us for details</p>
             </div>
             <a
               href="mailto:team@academicai.com"
-              className="w-full py-2.5 border border-border rounded-lg text-foreground hover:bg-muted transition font-medium text-center"
+              className="w-full py-3 border border-border rounded-lg text-foreground hover:bg-muted transition font-semibold text-lg text-center"
             >
               Contact Sales
             </a>
-            <div className="space-y-3 border-t border-border pt-6">
-              <div className="flex gap-3 items-center text-foreground">
+            <div className="space-y-4 border-t border-border pt-6">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>Everything in Pro</span>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>Bulk users</span>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>Admin panel</span>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
+              <div className="flex gap-3 items-center text-foreground text-base">
                 <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
                 <span>SSO support</span>
               </div>
@@ -192,7 +192,7 @@ export default function Pricing() {
 
         {/* FAQ Section */}
         <div className="max-w-3xl mx-auto mt-20 space-y-8">
-          <h2 className="text-3xl font-bold text-foreground text-center">
+          <h2 className="text-4xl font-bold text-foreground text-center">
             Frequently Asked Questions
           </h2>
           <div className="space-y-4">
@@ -215,8 +215,8 @@ export default function Pricing() {
               },
             ].map((item, i) => (
               <div key={i} className="bg-background border border-border rounded-lg p-6">
-                <h3 className="font-bold text-foreground mb-2">{item.q}</h3>
-                <p className="text-muted-foreground">{item.a}</p>
+                <h3 className="font-bold text-foreground mb-2 text-lg">{item.q}</h3>
+                <p className="text-muted-foreground text-base">{item.a}</p>
               </div>
             ))}
           </div>
