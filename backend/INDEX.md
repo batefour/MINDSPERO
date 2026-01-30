@@ -129,7 +129,7 @@ uvicorn app.main:app --reload
 | Feature | Free Trial | Monthly | Yearly |
 |---------|-----------|---------|---------|
 | Duration | 30 days | 30 days | 365 days |
-| Price | Free | $9.99 | $99.99 |
+| Price | Free | GHC30 | GHC360 |
 | Summarize PDFs | ✅ | ✅ | ✅ |
 | Audio Generation | ❌ | ✅ | ✅ |
 | Bonus | None | +1 month | +1 month |
@@ -290,8 +290,8 @@ uvicorn app.main:app --reload
 
 ### Subscription System
 - Auto free trial (30 days)
-- Monthly billing ($9.99)
-- Annual billing ($99.99)
+- Monthly billing (GHC30)
+- Annual billing (GHC360 — billed as GHC324 after 10% discount)
 - Bonus month for paid plans
 - Stripe integration
 - Webhook handling

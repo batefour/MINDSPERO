@@ -228,9 +228,9 @@ BONUS_TRIAL_DAYS=30
 - Free summary feature available
 - Audio generation NOT available during trial
 
-### Premium Plans
-- **Monthly**: $9.99/month
-- **Yearly**: $99.99/year
+-### Premium Plans
+- **Monthly**: GHC30/month
+- **Yearly**: GHC360/year (10% discount applied at checkout — billed as GHC324 after discount where applicable)
 - **Bonus**: +1 month free for any paid subscription
 - Includes unlimited summaries and audio generation
 - Auto-renews unless cancelled

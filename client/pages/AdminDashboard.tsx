@@ -27,8 +27,8 @@ export default function AdminDashboard() {
           {[
             { icon: Users, label: "Total Users", value: "1,234", change: "+12%" },
             { icon: TrendingUp, label: "Subscribed Users", value: "456", change: "+8%" },
-            { icon: CreditCard, label: "Total Revenue", value: "$12,456", change: "+25%" },
-            { icon: BarChart3, label: "Monthly Revenue", value: "$4,567", change: "+15%" },
+            { icon: CreditCard, label: "Total Revenue", value: "GHC12,456", change: "+25%" },
+            { icon: BarChart3, label: "Monthly Revenue", value: "GHC4,567", change: "+15%" },
           ].map((metric, i) => {
             const Icon = metric.icon;
             return (

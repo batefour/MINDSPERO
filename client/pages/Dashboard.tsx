@@ -302,10 +302,10 @@ export default function Dashboard() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between p-4 bg-background border border-border rounded-lg">
                     <div>
-                      <p className="text-foreground font-medium">Trial started</p>
-                      <p className="text-sm text-muted-foreground">Free</p>
-                    </div>
-                    <p className="text-foreground font-medium">$0.00</p>
+                        <p className="text-foreground font-medium">Trial started</p>
+                        <p className="text-sm text-muted-foreground">Free</p>
+                      </div>
+                      <p className="text-foreground font-medium">GHC0.00</p>
                   </div>
                 </div>
               </div>

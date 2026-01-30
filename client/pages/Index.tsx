@@ -174,77 +174,7 @@ export default function Index() {
         </div>
       </section>
 
-      {/* Pricing Preview */}
-      <section className="bg-muted/30 py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Simple, Transparent Pricing
-            </h2>
-            <p className="text-lg text-muted-foreground">
-              Start free, upgrade anytime
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
-            {/* Free Plan */}
-            <div className="bg-background rounded-2xl p-8 border border-border space-y-6">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground">Free</h3>
-                <p className="text-muted-foreground">Always free</p>
-              </div>
-              <div className="space-y-3">
-                <div className="flex gap-3 items-center text-foreground">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  <span>PDF Summarization</span>
-                </div>
-                <div className="flex gap-3 items-center text-muted-foreground">
-                  <div className="w-5 h-5" />
-                  <span>Audio Explanations</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Pro Plan */}
-            <div className="bg-background rounded-2xl p-8 border-2 border-primary space-y-6 relative">
-              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-3 py-1 rounded-full text-sm font-medium">
-                Most Popular
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-foreground">Pro</h3>
-                <p className="text-muted-foreground text-sm mt-1">Flexible billing</p>
-              </div>
-              <div className="space-y-1">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-4xl font-bold text-foreground">$9.99</span>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-                <p className="text-xs text-accent font-medium">Yearly also available - see pricing page</p>
-              </div>
-              <div className="space-y-3">
-                <div className="flex gap-3 items-center text-foreground">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  <span>PDF Summarization</span>
-                </div>
-                <div className="flex gap-3 items-center text-foreground">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  <span>Audio Explanations</span>
-                </div>
-                <div className="flex gap-3 items-center text-foreground">
-                  <CheckCircle className="w-5 h-5 text-primary" />
-                  <span>30-Day Free Trial</span>
-                </div>
-              </div>
-              <Link
-                to="/register"
-                className="w-full py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition font-medium text-center"
-              >
-                Start Free Trial
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Pricing Preview removed per request */}
 
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">

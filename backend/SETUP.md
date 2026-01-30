@@ -22,8 +22,8 @@ This is a production-ready FastAPI backend for an AI-powered PDF education platf
 
 3. **Subscription System**
    - Free trial (30 days automatic)
-   - Monthly plan ($9.99)
-   - Yearly plan ($99.99)
+   - Monthly plan (GHC30)
+   - Yearly plan (GHC360)
    - Bonus: +1 free month for paid subscriptions
    - Stripe integration with webhooks
 

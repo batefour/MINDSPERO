@@ -146,8 +146,8 @@ backend/
   - NO audio access
   
 - **Premium Plans**
-  - Monthly: $9.99 (30 days)
-  - Yearly: $99.99 (365 days)
+  - Monthly: GHC30 (30 days)
+  - Yearly: GHC360 (365 days) — 10% discount = GHC324 when billed yearly
   - Bonus: +1 month free for paid
   - Unlimited summaries & audio
   - Auto-renewal capability

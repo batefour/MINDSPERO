@@ -150,8 +150,8 @@ Returns: Access token, refresh token
 
 ### Subscription Plans
 - **Free Trial**: 30 days, summaries only
-- **Monthly**: $9.99, includes audio
-- **Yearly**: $99.99 (saves $20)
+- **Monthly**: GHC30, includes audio
+- **Yearly**: GHC360 (save 10% — billed as GHC324 after discount)
 - **Bonus**: +1 month free for paid plans
 
 ### Admin Features

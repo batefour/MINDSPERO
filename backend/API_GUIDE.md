@@ -233,7 +233,7 @@ All admin endpoints require:
   - **NOT**: Audio generation
 - Auto-expires after 30 days
 
-### Monthly Plan ($9.99/month)
+### Monthly Plan (GHC30/month)
 - Duration: 30 days
 - Bonus: +1 free month
 - Features:
@@ -242,12 +242,12 @@ All admin endpoints require:
   - Priority support
 - Auto-renews monthly
 
-### Yearly Plan ($99.99/year)
+### Yearly Plan (GHC360/year — 10% discount = GHC324)
 - Duration: 365 days
 - Bonus: +1 free month (30 days extra)
 - Features:
   - Everything in Monthly
-  - Annual discount (saves ~$20)
+  - Annual discount (save 10% — saves GHC36)
   - Priority support
 - Auto-renews annually
 
