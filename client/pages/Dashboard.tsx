@@ -305,7 +305,7 @@ export default function Dashboard() {
                       <p className="text-foreground font-medium">Trial started</p>
                       <p className="text-sm text-muted-foreground">Free</p>
                     </div>
-                    <p className="text-foreground font-medium">$0.00</p>
+                    <p className="text-foreground font-medium">GHS 0.00</p>
                   </div>
                 </div>
               </div>

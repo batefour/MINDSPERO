@@ -79,7 +79,7 @@ export default function Pricing() {
             </div>
             <div className="space-y-1">
               <p className="text-muted-foreground text-sm">Price</p>
-              <p className="text-4xl font-bold text-foreground">$0</p>
+              <p className="text-4xl font-bold text-foreground">GHS 0</p>
               <p className="text-muted-foreground text-sm">Forever</p>
             </div>
             <button className="w-full py-2.5 border border-border rounded-lg text-foreground hover:bg-muted transition font-medium">
@@ -114,12 +114,12 @@ export default function Pricing() {
               <p className="text-muted-foreground text-sm">Price</p>
               {billingPeriod === "monthly" ? (
                 <div className="flex items-baseline gap-1">
-                  <p className="text-4xl font-bold text-foreground">$9.99</p>
+                  <p className="text-4xl font-bold text-foreground">GHS 150</p>
                   <span className="text-muted-foreground">/month</span>
                 </div>
               ) : (
                 <div className="flex items-baseline gap-1">
-                  <p className="text-4xl font-bold text-foreground">$95.88</p>
+                  <p className="text-4xl font-bold text-foreground">GHS 1,440</p>
                   <span className="text-muted-foreground">/year</span>
                 </div>
               )}
