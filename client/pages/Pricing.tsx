@@ -1,27 +1,31 @@
 import { Link } from "react-router-dom";
-import { CheckCircle, ArrowRight } from "lucide-react";
+import { CheckCircle, ArrowRight, Sparkles, Zap } from "lucide-react";
 import { useState } from "react";
 
 export default function Pricing() {
   const [billingPeriod, setBillingPeriod] = useState<"monthly" | "yearly">("monthly");
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl opacity-50 animate-pulse" style={{animationDelay: '1s'}}></div>
+      </div>
+
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">
-              M
-            </div>
-            <span className="text-lg font-bold text-foreground">MindSpero</span>
+          <Link to="/" className="flex items-center gap-2 group">
+            <img src="/mindspero-logo.svg" alt="MindSpero" className="w-10 h-10 group-hover:scale-110 transition-transform" />
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">MindSpero</span>
           </Link>
-          <div className="flex items-center gap-4">
-            <Link to="/login" className="px-4 py-2 text-foreground hover:text-primary transition">
+          <div className="flex items-center gap-3">
+            <Link to="/login" className="px-4 py-2 text-foreground hover:text-primary transition font-medium">
               Login
             </Link>
-            <Link to="/register" className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition">
-              Sign Up
+            <Link to="/register" className="px-4 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all font-bold text-sm">
+              Start Free
             </Link>
           </div>
         </div>
@@ -29,23 +33,28 @@ export default function Pricing() {
 
       {/* Hero Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="text-center space-y-6 mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-            Simple, Transparent Pricing
+        <div className="text-center space-y-6 mb-16">
+          <div className="inline-block">
+            <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold flex items-center gap-2 w-fit mx-auto">
+              <Sparkles className="w-4 h-4" /> Transparent Pricing
+            </span>
+          </div>
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-black text-foreground">
+            Plans for Every Learner
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Choose the plan that works for you. Start free with PDF summaries, upgrade anytime for audio tutoring.
+          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            Start free with unlimited summaries. Upgrade anytime for personalized audio tutoring.
           </p>
         </div>
 
         {/* Billing Toggle */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex items-center gap-2 bg-muted p-1 rounded-lg">
+        <div className="flex justify-center mb-16">
+          <div className="inline-flex items-center gap-2 bg-muted p-1.5 rounded-xl border border-border">
             <button
               onClick={() => setBillingPeriod("monthly")}
-              className={`px-6 py-2 rounded-md font-medium transition ${
+              className={`px-6 py-2.5 rounded-lg font-bold transition ${
                 billingPeriod === "monthly"
-                  ? "bg-background text-foreground"
+                  ? "bg-white text-foreground shadow-lg"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
@@ -53,16 +62,16 @@ export default function Pricing() {
             </button>
             <button
               onClick={() => setBillingPeriod("yearly")}
-              className={`px-6 py-2 rounded-md font-medium transition flex items-center gap-2 ${
+              className={`px-6 py-2.5 rounded-lg font-bold transition flex items-center gap-2 ${
                 billingPeriod === "yearly"
-                  ? "bg-background text-foreground"
+                  ? "bg-white text-foreground shadow-lg"
                   : "text-muted-foreground hover:text-foreground"
               }`}
             >
               Yearly
               {billingPeriod === "yearly" && (
-                <span className="text-xs bg-accent text-accent-foreground px-2 py-0.5 rounded-full">
-                  Save 10%
+                <span className="text-xs bg-green-500 text-white px-2 py-1 rounded-full font-bold">
+                  Save 20%
                 </span>
               )}
             </button>
@@ -70,159 +79,167 @@ export default function Pricing() {
         </div>
 
         {/* Pricing Cards */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {/* Free Plan */}
-          <div className="bg-background rounded-2xl p-8 border border-border space-y-6">
-            <div>
-              <h3 className="text-2xl font-bold text-foreground">Free</h3>
-              <p className="text-muted-foreground">Perfect to get started</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-sm">Price</p>
-              <p className="text-4xl font-bold text-foreground">GHC0</p>
-              <p className="text-muted-foreground text-sm">Forever</p>
-            </div>
-            <button className="w-full py-2.5 border border-border rounded-lg text-foreground hover:bg-muted transition font-medium">
-              Get Started
-            </button>
-            <div className="space-y-3 border-t border-border pt-6">
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>PDF uploads</span>
+          <div className="group relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative bg-background rounded-2xl p-8 border border-border/50 hover:border-primary/50 transition-all space-y-6 h-full">
+              <div>
+                <h3 className="text-2xl font-black text-foreground">Free</h3>
+                <p className="text-muted-foreground font-medium">Perfect to start</p>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>AI summaries</span>
+              <div className="space-y-2">
+                <div className="flex items-baseline gap-2">
+                  <p className="text-5xl font-black text-foreground">0</p>
+                  <span className="text-muted-foreground font-medium">Forever</span>
+                </div>
               </div>
-              <div className="flex gap-3 items-center text-muted-foreground">
-                <div className="w-5 h-5" />
-                <span>Audio tutoring</span>
+              <Link to="/register" className="w-full py-3 border-2 border-border rounded-xl text-foreground hover:bg-muted hover:border-primary transition-all font-bold">
+                Get Started
+              </Link>
+              <div className="space-y-3 border-t border-border/50 pt-6">
+                {[
+                  "Unlimited PDF uploads",
+                  "AI-powered summaries",
+                  "Download documents",
+                  "No credit card required",
+                ].map((feature, i) => (
+                  <div key={i} className="flex gap-3 items-center text-foreground">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="font-medium">{feature}</span>
+                  </div>
+                ))}
+                <div className="flex gap-3 items-center text-muted-foreground opacity-50">
+                  <div className="w-5 h-5" />
+                  <span className="font-medium">Audio explanations</span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Pro Plan */}
-          <div className="bg-background rounded-2xl p-8 border-2 border-primary space-y-6 relative md:scale-105">
-            <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-4 py-1 rounded-full text-sm font-bold">
-              Most Popular
-            </div>
-            <div>
-              <h3 className="text-2xl font-bold text-foreground">Pro</h3>
-              <p className="text-muted-foreground">For dedicated learners</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-sm">Price</p>
-              {billingPeriod === "monthly" ? (
-                <div className="flex items-baseline gap-1">
-                  <p className="text-4xl font-bold text-foreground">GHC30</p>
-                  <span className="text-muted-foreground">/month</span>
-                </div>
-              ) : (
-                <div className="space-y-1">
-                  <div className="flex items-baseline gap-1">
-                    <p className="text-4xl font-bold text-foreground">GHC324</p>
-                    <span className="text-muted-foreground">/year</span>
+          {/* Pro Plan - Featured */}
+          <div className="group relative md:scale-105 md:-my-4">
+            <div className="absolute -inset-2 bg-gradient-to-r from-primary to-secondary rounded-3xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative bg-background rounded-2xl p-8 border-2 border-gradient-to-r from-primary to-secondary space-y-6 h-full flex flex-col">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-secondary text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
+                Most Popular
+              </div>
+              <div>
+                <h3 className="text-2xl font-black text-foreground">Pro</h3>
+                <p className="text-muted-foreground font-medium">For dedicated learners</p>
+              </div>
+              <div className="space-y-2">
+                {billingPeriod === "monthly" ? (
+                  <div className="flex items-baseline gap-2">
+                    <p className="text-5xl font-black text-primary">GHC 30</p>
+                    <span className="text-muted-foreground font-medium">/month</span>
                   </div>
-                  <p className="text-sm text-muted-foreground">
-                    <span className="line-through mr-2">GHC360</span>
-                    <span className="text-primary font-medium">10% off</span>
-                  </p>
-                </div>
-              )}
-              <p className="text-sm text-primary font-medium pt-2">+30 days free per purchase</p>
-            </div>
-            <Link
-              to="/register"
-              className="w-full py-2.5 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition font-medium flex items-center justify-center gap-2"
-            >
-              Start Free Trial
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-            <div className="space-y-3 border-t border-border pt-6">
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>Everything in Free</span>
+                ) : (
+                  <div className="space-y-2">
+                    <div className="flex items-baseline gap-2">
+                      <p className="text-5xl font-black text-primary">GHC 288</p>
+                      <span className="text-muted-foreground font-medium">/year</span>
+                    </div>
+                    <p className="text-sm text-muted-foreground">
+                      <span className="line-through mr-2">GHC 360</span>
+                      <span className="text-green-500 font-bold">20% off</span>
+                    </p>
+                  </div>
+                )}
+                <p className="text-sm text-primary font-bold pt-2">+ 30 days free trial</p>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>Audio explanations</span>
-              </div>
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>Download summaries</span>
-              </div>
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>Priority support</span>
+              <Link
+                to="/register"
+                className="w-full py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:shadow-lg hover:shadow-primary/30 transition-all font-bold flex items-center justify-center gap-2 group/btn"
+              >
+                Start Free Trial
+                <ArrowRight className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" />
+              </Link>
+              <div className="space-y-3 border-t border-border/50 pt-6 flex-1">
+                {[
+                  "Everything in Free",
+                  "Audio explanations",
+                  "Download summaries",
+                  "Priority support",
+                  "Advanced features",
+                ].map((feature, i) => (
+                  <div key={i} className="flex gap-3 items-center text-foreground">
+                    <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="font-medium">{feature}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
           {/* Team Plan */}
-          <div className="bg-background rounded-2xl p-8 border border-border space-y-6">
-            <div>
-              <h3 className="text-2xl font-bold text-foreground">Team</h3>
-              <p className="text-muted-foreground">For schools & organizations</p>
-            </div>
-            <div className="space-y-1">
-              <p className="text-muted-foreground text-sm">Price</p>
-              <p className="text-2xl font-bold text-foreground">Custom</p>
-              <p className="text-muted-foreground text-sm">Contact us for details</p>
-            </div>
-            <a
-              href="mailto:team@academicai.com"
-              className="w-full py-2.5 border border-border rounded-lg text-foreground hover:bg-muted transition font-medium text-center"
-            >
-              Contact Sales
-            </a>
-            <div className="space-y-3 border-t border-border pt-6">
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>Everything in Pro</span>
+          <div className="group relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-secondary/5 to-transparent rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="relative bg-background rounded-2xl p-8 border border-border/50 hover:border-secondary/50 transition-all space-y-6 h-full">
+              <div>
+                <h3 className="text-2xl font-black text-foreground">Team</h3>
+                <p className="text-muted-foreground font-medium">For schools & orgs</p>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>Bulk users</span>
+              <div className="space-y-2">
+                <p className="text-sm text-muted-foreground font-medium">Custom pricing</p>
+                <p className="text-3xl font-black text-foreground">Let's talk</p>
               </div>
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>Admin panel</span>
-              </div>
-              <div className="flex gap-3 items-center text-foreground">
-                <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                <span>SSO support</span>
+              <a
+                href="mailto:team@mindspero.com"
+                className="w-full py-3 border-2 border-border rounded-xl text-foreground hover:bg-muted hover:border-secondary transition-all font-bold text-center"
+              >
+                Contact Sales
+              </a>
+              <div className="space-y-3 border-t border-border/50 pt-6">
+                {[
+                  "Everything in Pro",
+                  "Unlimited users",
+                  "Admin dashboard",
+                  "SSO integration",
+                  "Dedicated support",
+                ].map((feature, i) => (
+                  <div key={i} className="flex gap-3 items-center text-foreground">
+                    <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0" />
+                    <span className="font-medium">{feature}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
         {/* FAQ Section */}
-        <div className="max-w-3xl mx-auto mt-20 space-y-8">
-          <h2 className="text-3xl font-bold text-foreground text-center">
-            Frequently Asked Questions
+        <div className="max-w-3xl mx-auto mt-32 space-y-8">
+          <h2 className="text-4xl font-black text-foreground text-center">
+            Common Questions
           </h2>
-          <div className="space-y-4">
+          <div className="grid gap-4">
             {[
               {
-                q: "Can I use the free plan forever?",
-                a: "Yes! The free plan includes unlimited PDF uploads and summaries. You only need to upgrade to access audio explanations.",
+                q: "Is the free plan really forever?",
+                a: "Yes! Unlimited PDF uploads and summaries, forever. Audio explanations require a subscription.",
               },
               {
-                q: "What happens after my trial ends?",
-                a: "After your 30-day free trial ends, you'll need to subscribe to continue accessing audio explanations. You can keep using the free summarization forever.",
+                q: "What happens after my trial?",
+                a: "Your trial lasts 30 days. After that, you can subscribe to continue with audio features, or keep using free summaries.",
               },
               {
                 q: "Can I cancel anytime?",
-                a: "Absolutely! You can cancel your subscription at any time with no questions asked.",
+                a: "Absolutely. No lock-in period, cancel instantly from your account settings.",
               },
               {
-                q: "Do you offer discounts?",
-                a: "Yes! Annual plans come with a discount, and you get an extra month free with any Pro purchase.",
+                q: "Do you offer refunds?",
+                a: "Yes, 30-day money-back guarantee if you're not satisfied.",
               },
             ].map((item, i) => (
-              <div key={i} className="bg-background border border-border rounded-lg p-6">
-                <h3 className="font-bold text-foreground mb-2">{item.q}</h3>
-                <p className="text-muted-foreground">{item.a}</p>
+              <div key={i} className="bg-background border border-border/50 rounded-xl p-6 hover:border-primary/50 transition-colors">
+                <div className="flex gap-3">
+                  <Zap className="w-5 h-5 text-primary flex-shrink-0 mt-1" />
+                  <div className="flex-1">
+                    <h3 className="font-bold text-foreground mb-2">{item.q}</h3>
+                    <p className="text-muted-foreground">{item.a}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -231,20 +248,23 @@ export default function Pricing() {
 
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 md:p-16 text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">
-            Ready to Unlock Audio Tutoring?
-          </h2>
-          <p className="text-primary-foreground/90 max-w-2xl mx-auto">
-            Start with a free 30-day trial. No credit card required.
-          </p>
-          <Link
-            to="/register"
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary-foreground text-primary rounded-lg hover:opacity-90 transition font-bold"
-          >
-            Start Free Trial
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Link>
+        <div className="bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl p-12 md:p-20 text-center space-y-8 relative overflow-hidden group">
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-white blur-xl"></div>
+          <div className="relative z-10 space-y-8">
+            <h2 className="text-4xl md:text-5xl font-black text-white">
+              Ready to Level Up Your Learning?
+            </h2>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+              Get 30 days free. No credit card. Full access to audio explanations.
+            </p>
+            <Link
+              to="/register"
+              className="w-full sm:w-auto inline-flex items-center justify-center px-10 py-4 bg-white text-primary rounded-xl hover:shadow-2xl hover:shadow-primary/50 transition-all font-bold text-lg group/btn"
+            >
+              Start Your Free Trial
+              <ArrowRight className="w-6 h-6 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+            </Link>
+          </div>
         </div>
       </section>
     </div>

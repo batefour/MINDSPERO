@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Mail, Lock, User, ArrowRight } from "lucide-react";
+import { Mail, Lock, User, ArrowRight, Sparkles, CheckCircle } from "lucide-react";
 import { useState } from "react";
 
 export default function Register() {
@@ -17,105 +17,115 @@ export default function Register() {
   };
 
   return (
-    <div className="min-h-screen bg-background flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col overflow-hidden">
+      {/* Animated background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute top-20 right-10 w-72 h-72 bg-secondary/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute bottom-10 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse" style={{animationDelay: '1s'}}></div>
+      </div>
+
       {/* Header */}
-      <div className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">
-              M
-            </div>
-            <span className="text-lg font-bold text-foreground">MindSpero</span>
+      <div className="border-b border-border/50 bg-background/80 backdrop-blur-xl sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 group">
+            <img src="/mindspero-logo.svg" alt="MindSpero" className="w-8 h-8 group-hover:scale-110 transition-transform" />
+            <span className="text-lg font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">MindSpero</span>
           </Link>
+          <p className="text-sm text-muted-foreground">
+            Already have an account? <Link to="/login" className="text-primary hover:underline font-medium">Sign in</Link>
+          </p>
         </div>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 flex items-center justify-center px-4 py-12">
-        <div className="w-full max-w-md space-y-8">
+        <div className="w-full max-w-md space-y-8 px-2">
           {/* Welcome Section */}
-          <div className="text-center space-y-2">
-            <h1 className="text-3xl font-bold text-foreground">Join MindSpero</h1>
-            <p className="text-muted-foreground">
-              Start with free PDF summaries, get 30 days free audio trial
+          <div className="space-y-4">
+            <div className="inline-block">
+              <span className="px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-bold flex items-center gap-2 w-fit">
+                <Sparkles className="w-4 h-4" /> Join Now
+              </span>
+            </div>
+            <h1 className="text-3xl sm:text-4xl font-black text-foreground">Create Account</h1>
+            <p className="text-lg text-muted-foreground">
+              Start with unlimited free summaries. Premium features optional.
             </p>
           </div>
 
           {/* Sign Up Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Full Name Input */}
-            <div className="space-y-2">
-              <label htmlFor="fullName" className="block text-sm font-medium text-foreground">
+            <div className="space-y-3">
+              <label htmlFor="fullName" className="block text-sm font-bold text-foreground">
                 Full Name
               </label>
-              <div className="relative">
-                <User className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+              <div className="relative group">
+                <User className="absolute left-4 top-3.5 w-5 h-5 text-muted-foreground group-focus-within:text-secondary transition-colors" />
                 <input
                   id="fullName"
                   type="text"
                   placeholder="John Doe"
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                  className="w-full pl-12 pr-4 py-3 border border-border/50 rounded-xl bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all group-hover:border-border"
                   required
                 />
               </div>
             </div>
 
             {/* Email Input */}
-            <div className="space-y-2">
-              <label htmlFor="email" className="block text-sm font-medium text-foreground">
+            <div className="space-y-3">
+              <label htmlFor="email" className="block text-sm font-bold text-foreground">
                 Email Address
               </label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+              <div className="relative group">
+                <Mail className="absolute left-4 top-3.5 w-5 h-5 text-muted-foreground group-focus-within:text-secondary transition-colors" />
                 <input
                   id="email"
                   type="email"
                   placeholder="you@example.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                  className="w-full pl-12 pr-4 py-3 border border-border/50 rounded-xl bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all group-hover:border-border"
                   required
                 />
               </div>
             </div>
 
             {/* Password Input */}
-            <div className="space-y-2">
-              <label htmlFor="password" className="block text-sm font-medium text-foreground">
+            <div className="space-y-3">
+              <label htmlFor="password" className="block text-sm font-bold text-foreground">
                 Password
               </label>
-              <div className="relative">
-                <Lock className="absolute left-3 top-3.5 w-5 h-5 text-muted-foreground" />
+              <div className="relative group">
+                <Lock className="absolute left-4 top-3.5 w-5 h-5 text-muted-foreground group-focus-within:text-secondary transition-colors" />
                 <input
                   id="password"
                   type="password"
                   placeholder="••••••••"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-4 py-2.5 border border-border rounded-lg bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition"
+                  className="w-full pl-12 pr-4 py-3 border border-border/50 rounded-xl bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-secondary focus:border-transparent transition-all group-hover:border-border"
                   required
                 />
               </div>
-              <p className="text-xs text-muted-foreground">
-                Must be at least 8 characters long
+              <p className="text-xs text-muted-foreground flex items-center gap-1">
+                <CheckCircle className="w-3 h-3 text-green-500" /> At least 8 characters
               </p>
             </div>
 
-            {/* Agreement Checkbox */}
-            <div className="flex items-start gap-2">
+            {/* Agreement */}
+            <div className="flex items-start gap-3 pt-2">
               <input
                 type="checkbox"
                 id="agree"
                 defaultChecked
-                className="mt-1 w-4 h-4 rounded border-border bg-background text-primary focus:ring-primary cursor-pointer"
+                className="mt-1 w-5 h-5 rounded border-border bg-background text-secondary focus:ring-secondary cursor-pointer"
                 required
               />
-              <label htmlFor="agree" className="text-sm text-muted-foreground cursor-pointer">
-                I agree to the{" "}
-                <a href="#" className="text-primary hover:underline">Terms of Service</a> and{" "}
-                <a href="#" className="text-primary hover:underline">Privacy Policy</a>
+              <label htmlFor="agree" className="text-sm text-muted-foreground cursor-pointer leading-relaxed">
+                I agree to the <a href="#" className="text-secondary hover:underline font-medium">Terms of Service</a> and <a href="#" className="text-secondary hover:underline font-medium">Privacy Policy</a>
               </label>
             </div>
 
@@ -123,29 +133,29 @@ export default function Register() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-2.5 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition font-medium flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3 bg-gradient-to-r from-secondary to-accent text-white rounded-xl hover:shadow-lg hover:shadow-secondary/30 transition-all font-bold text-base flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed group"
             >
               {isLoading ? "Creating account..." : "Create Account"}
-              {!isLoading && <ArrowRight className="w-5 h-5" />}
+              {!isLoading && <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />}
             </button>
           </form>
 
           {/* Divider */}
           <div className="relative">
             <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-border"></div>
+              <div className="w-full border-t border-border/50"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-background text-muted-foreground">Or sign up with</span>
+              <span className="px-3 bg-background text-muted-foreground font-medium">Or sign up with</span>
             </div>
           </div>
 
           {/* Google Sign Up */}
           <button
             type="button"
-            className="w-full py-2.5 border border-border rounded-lg hover:bg-muted transition font-medium text-foreground flex items-center justify-center gap-2"
+            className="w-full py-3 border-2 border-border/50 rounded-xl hover:border-secondary hover:bg-secondary/5 transition-all font-medium text-foreground flex items-center justify-center gap-3 group"
           >
-            <svg className="w-5 h-5" viewBox="0 0 24 24">
+            <svg className="w-5 h-5 group-hover:scale-110 transition-transform" viewBox="0 0 24 24">
               <path fill="currentColor" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
               <path fill="currentColor" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
               <path fill="currentColor" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
@@ -157,7 +167,7 @@ export default function Register() {
           {/* Login Link */}
           <p className="text-center text-muted-foreground">
             Already have an account?{" "}
-            <Link to="/login" className="text-primary hover:underline font-medium">
+            <Link to="/login" className="text-secondary hover:underline font-bold">
               Sign in
             </Link>
           </p>
@@ -165,10 +175,11 @@ export default function Register() {
       </div>
 
       {/* Footer */}
-      <div className="border-t border-border bg-muted/20 py-6 text-center text-sm text-muted-foreground">
-        <div className="space-x-6">
-          <a href="#" className="hover:text-primary transition">Privacy</a>
-          <a href="#" className="hover:text-primary transition">Terms</a>
+      <div className="border-t border-border/50 bg-background/50 backdrop-blur-sm py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-8 text-sm text-muted-foreground">
+          <a href="#" className="hover:text-secondary transition font-medium">Privacy Policy</a>
+          <a href="#" className="hover:text-secondary transition font-medium">Terms of Service</a>
+          <a href="#" className="hover:text-secondary transition font-medium">Contact</a>
         </div>
       </div>
     </div>

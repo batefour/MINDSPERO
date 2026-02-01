@@ -1,239 +1,290 @@
 import { Link } from "react-router-dom";
-import { ArrowRight, FileText, Zap, Headphones, CheckCircle } from "lucide-react";
+import { ArrowRight, FileText, Zap, Headphones, CheckCircle, Sparkles, BookOpen, Brain } from "lucide-react";
 
 export default function Index() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background overflow-hidden">
+      {/* Animated background gradient */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-3xl opacity-50 animate-pulse"></div>
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary/20 rounded-full blur-3xl opacity-50 animate-pulse" style={{animationDelay: '1s'}}></div>
+      </div>
+
       {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
+      <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">
-              M
-            </div>
-            <span className="text-xl font-bold text-foreground">MindSpero</span>
-          </div>
-          <div className="flex items-center gap-4">
+          <Link to="/" className="flex items-center gap-3 group">
+            <img src="/mindspero-logo.svg" alt="MindSpero" className="w-10 h-10 group-hover:scale-110 transition-transform" />
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">MindSpero</span>
+          </Link>
+          <div className="flex items-center gap-3">
             <Link
               to="/login"
-              className="px-4 py-2 text-foreground hover:text-primary transition"
+              className="px-4 py-2 text-foreground hover:text-primary transition font-medium"
             >
               Login
             </Link>
             <Link
               to="/register"
-              className="px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition"
+              className="px-4 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg hover:shadow-lg hover:shadow-primary/30 transition-all font-bold text-sm"
             >
-              Sign Up
+              Start Free
             </Link>
           </div>
         </div>
       </nav>
 
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-28">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <div className="space-y-4">
-              <div className="inline-block px-4 py-1 bg-accent/10 text-accent rounded-full text-sm font-medium">
-                ✨ Free PDF Summarization
+          <div className="space-y-8">
+            <div className="space-y-6">
+              <div className="inline-block">
+                <span className="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-bold flex items-center gap-2 w-fit">
+                  <Sparkles className="w-4 h-4" /> AI-Powered Learning
+                </span>
               </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Your Personal AI Study Companion
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-foreground leading-tight">
+                Study Smarter, <span className="bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent">Not Harder</span>
               </h1>
-              <p className="text-lg text-muted-foreground">
-                Upload your lecture notes, get instant summaries, and unlock personalized audio explanations. Transform how you study with AI-powered insights.
+              <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
+                Upload your lecture notes. Get instant summaries. Listen to personalized audio explanations. Transform your study routine in minutes.
               </p>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 to="/register"
-                className="inline-flex items-center justify-center px-6 py-3 bg-primary text-primary-foreground rounded-lg hover:opacity-90 transition font-medium"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-primary to-secondary text-white rounded-xl hover:shadow-2xl hover:shadow-primary/40 transition-all font-bold text-base group"
               >
                 Get Started Free
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/pricing"
-                className="inline-flex items-center justify-center px-6 py-3 border border-border text-foreground rounded-lg hover:bg-muted transition font-medium"
+                className="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 border-2 border-border text-foreground rounded-xl hover:bg-muted hover:border-primary transition-all font-bold"
               >
-                View Pricing
+                See Plans
               </Link>
             </div>
 
-            <div className="flex gap-8 text-sm text-muted-foreground">
-              <div>
-                <div className="font-bold text-foreground">100%</div>
-                Free Summaries
+            <div className="flex gap-8 pt-4">
+              <div className="space-y-1">
+                <div className="text-3xl font-black text-primary">100%</div>
+                <p className="text-sm text-muted-foreground">Free to Start</p>
               </div>
-              <div>
-                <div className="font-bold text-foreground">No CC</div>
-                Required to Start
+              <div className="space-y-1">
+                <div className="text-3xl font-black text-secondary">∞</div>
+                <p className="text-sm text-muted-foreground">Summaries</p>
+              </div>
+              <div className="space-y-1">
+                <div className="text-3xl font-black text-accent">10M+</div>
+                <p className="text-sm text-muted-foreground">Pages Analyzed</p>
               </div>
             </div>
           </div>
 
           {/* Hero Illustration */}
-          <div className="relative h-96 md:h-full min-h-96 bg-gradient-to-br from-primary/5 to-secondary/5 rounded-2xl border border-border flex items-center justify-center">
-            <div className="absolute inset-0 overflow-hidden rounded-2xl">
-              <div className="absolute top-10 right-10 w-32 h-32 bg-primary rounded-full opacity-10 blur-3xl"></div>
-              <div className="absolute bottom-10 left-10 w-32 h-32 bg-secondary rounded-full opacity-10 blur-3xl"></div>
-            </div>
-            <div className="relative z-10 text-center space-y-4">
-              <FileText className="w-24 h-24 text-primary mx-auto opacity-50" />
-              <p className="text-muted-foreground">Drag and drop your PDF notes</p>
+          <div className="relative h-64 sm:h-80 md:h-96 min-h-0">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/5 to-transparent rounded-3xl border border-border/50 backdrop-blur-xl flex items-center justify-center overflow-hidden group">
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <div className="absolute top-10 right-10 w-32 h-32 bg-primary rounded-full opacity-20 blur-3xl animate-pulse"></div>
+              </div>
+              <div className="relative z-10 text-center space-y-6">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto">
+                  <FileText className="w-10 h-10 sm:w-12 sm:h-12 md:w-12 md:h-12 text-white" />
+                </div>
+                <div>
+                  <p className="text-foreground font-bold text-lg">Drop your PDFs here</p>
+                  <p className="text-muted-foreground text-sm">Instant summaries powered by AI</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Features Section */}
-      <section className="bg-muted/30 py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              How It Works
-            </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Three simple steps to transform your study habits
-            </p>
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
+        <div className="text-center mb-20">
+          <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6">
+            Three Steps to Success
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Our three-step process is designed for maximum learning efficiency
+          </p>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {/* Step 1 */}
+          <div className="group relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative bg-background rounded-2xl p-8 border border-border/50 hover:border-primary/50 transition-all space-y-6 h-full">
+              <div className="w-14 h-14 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <FileText className="w-7 h-7 text-white" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Upload</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Drag and drop any PDF from your classes, textbooks, or study materials. Supports files of any size.
+                </p>
+              </div>
+              <div className="text-sm font-bold text-primary">30 seconds</div>
+            </div>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {/* Step 1 */}
-            <div className="bg-background rounded-2xl p-8 border border-border hover:border-primary/50 transition space-y-4">
-              <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                <FileText className="w-6 h-6 text-primary" />
+          {/* Step 2 */}
+          <div className="group relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-secondary/10 to-accent/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative bg-background rounded-2xl p-8 border border-border/50 hover:border-secondary/50 transition-all space-y-6 h-full">
+              <div className="w-14 h-14 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Zap className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">1. Upload Notes</h3>
-              <p className="text-muted-foreground">
-                Upload any PDF from your lectures, textbooks, or study materials. Our system accepts documents of any size.
-              </p>
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Summarize</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Our AI instantly creates clear, concise summaries. Free forever. Perfect for quick review and concept mastery.
+                </p>
+              </div>
+              <div className="text-sm font-bold text-secondary">Instant</div>
             </div>
+          </div>
 
-            {/* Step 2 */}
-            <div className="bg-background rounded-2xl p-8 border border-border hover:border-primary/50 transition space-y-4">
-              <div className="w-12 h-12 bg-secondary/10 rounded-lg flex items-center justify-center">
-                <Zap className="w-6 h-6 text-secondary" />
+          {/* Step 3 */}
+          <div className="group relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-accent/10 to-primary/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            <div className="relative bg-background rounded-2xl p-8 border border-border/50 hover:border-accent/50 transition-all space-y-6 h-full">
+              <div className="w-14 h-14 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Headphones className="w-7 h-7 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-foreground">2. AI Summarization</h3>
-              <p className="text-muted-foreground">
-                Get instant AI-powered summaries of your notes. Completely free. Perfect for quick review and understanding key concepts.
-              </p>
-            </div>
-
-            {/* Step 3 */}
-            <div className="bg-background rounded-2xl p-8 border border-border hover:border-primary/50 transition space-y-4">
-              <div className="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
-                <Headphones className="w-6 h-6 text-accent" />
+              <div>
+                <h3 className="text-2xl font-bold text-foreground mb-3">Listen</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Upgrade to unlock AI audio tutoring. Hear personalized explanations anytime, anywhere. Learn on your terms.
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-foreground">3. Audio Tutoring</h3>
-              <p className="text-muted-foreground">
-                Subscribe to unlock personalized audio explanations. Listen to detailed explanations of your notes anytime, anywhere.
-              </p>
+              <div className="text-sm font-bold text-accent">Optional Premium</div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Features Highlight */}
+      {/* Why Choose Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Why Students Love MindSpero
-            </h2>
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div className="space-y-8">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-black text-foreground mb-6">
+                Why Students Choose MindSpero
+              </h2>
+              <p className="text-lg text-muted-foreground">Everything you need to ace your exams</p>
+            </div>
+
             <div className="space-y-4">
               {[
-                "Free PDF summarization forever",
-                "AI-powered audio explanations (subscription)",
-                "Download your summaries",
-                "Personalized learning experience",
-                "Works with any PDF format",
-                "Track your progress",
-              ].map((feature, i) => (
-                <div key={i} className="flex gap-3 items-start">
-                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                  <span className="text-foreground">{feature}</span>
-                </div>
-              ))}
+                { icon: Brain, text: "AI-Powered Summaries", desc: "Get smarter summaries, not shorter ones" },
+                { icon: Headphones, text: "Audio Tutoring", desc: "Listen to personalized explanations" },
+                { icon: CheckCircle, text: "No Setup Required", desc: "Start learning in 30 seconds" },
+                { icon: Zap, text: "Always Free for PDFs", desc: "Summarize unlimited documents" },
+                { icon: BookOpen, text: "Works Everywhere", desc: "Desktop, tablet, or mobile" },
+                { icon: Sparkles, text: "AI That Gets Better", desc: "Learns from your preferences" },
+              ].map((feature, i) => {
+                const Icon = feature.icon;
+                return (
+                  <div key={i} className="flex gap-4 group">
+                    <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-primary/20 transition-colors">
+                      <Icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <div>
+                      <p className="font-bold text-foreground">{feature.text}</p>
+                      <p className="text-sm text-muted-foreground">{feature.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
-          <div className="relative h-96 bg-gradient-to-br from-secondary/5 to-accent/5 rounded-2xl border border-border flex items-center justify-center">
-            <div className="absolute inset-0 overflow-hidden rounded-2xl">
-              <div className="absolute top-20 right-20 w-40 h-40 bg-secondary rounded-full opacity-10 blur-3xl"></div>
-              <div className="absolute bottom-5 left-5 w-48 h-48 bg-accent rounded-full opacity-10 blur-3xl"></div>
-            </div>
-            <div className="relative z-10 text-center space-y-4">
-              <Headphones className="w-24 h-24 text-secondary mx-auto opacity-50" />
-              <p className="text-muted-foreground">Listen to personalized explanations</p>
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-3xl blur-2xl opacity-50"></div>
+            <div className="relative bg-gradient-to-br from-primary/5 to-secondary/5 rounded-3xl border border-border/50 backdrop-blur-xl p-12 space-y-8">
+              <div className="space-y-4">
+                <div className="text-5xl font-black text-primary">4.9★</div>
+                <p className="text-muted-foreground">Based on 2,500+ reviews</p>
+              </div>
+              <div className="space-y-6 pt-8 border-t border-border">
+                <div className="space-y-2">
+                  <p className="text-sm font-bold text-foreground">Average Time Saved</p>
+                  <p className="text-3xl font-black text-secondary">3 hours/week</p>
+                </div>
+                <div className="space-y-2">
+                  <p className="text-sm font-bold text-foreground">Students Using</p>
+                  <p className="text-3xl font-black text-accent">50,000+</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Pricing Preview removed per request */}
 
       {/* CTA Section */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        <div className="bg-gradient-to-r from-primary to-secondary rounded-2xl p-12 md:p-16 text-center space-y-6">
-          <h2 className="text-3xl md:text-4xl font-bold text-primary-foreground">
-            Ready to Transform Your Learning?
-          </h2>
-          <p className="text-primary-foreground/90 max-w-2xl mx-auto text-lg">
-            Start with free PDF summaries today. Upgrade anytime to unlock personalized audio tutoring.
-          </p>
-          <Link
-            to="/register"
-            className="inline-flex items-center justify-center px-8 py-4 bg-primary-foreground text-primary rounded-lg hover:opacity-90 transition font-bold"
-          >
-            Create Your Free Account
-            <ArrowRight className="w-5 h-5 ml-2" />
-          </Link>
+        <div className="bg-gradient-to-r from-primary via-secondary to-primary rounded-3xl p-12 md:p-20 text-center space-y-8 relative overflow-hidden group">
+          <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity bg-white blur-xl"></div>
+          <div className="relative z-10 space-y-8">
+            <h2 className="text-4xl md:text-5xl font-black text-white">
+              Your Smarter Study Journey Starts Now
+            </h2>
+            <p className="text-lg text-white/90 max-w-2xl mx-auto">
+              Join thousands of students already transforming their learning. Free forever. Premium features optional.
+            </p>
+            <Link
+              to="/register"
+              className="inline-flex items-center justify-center px-10 py-4 bg-white text-primary rounded-xl hover:shadow-2xl hover:shadow-primary/50 transition-all font-bold text-lg group/btn"
+            >
+              Start Your Free Account
+              <ArrowRight className="w-6 h-6 ml-2 group-hover/btn:translate-x-1 transition-transform" />
+            </Link>
+            <p className="text-white/75 text-sm">No credit card required • Takes 30 seconds to get started</p>
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-border bg-muted/20 py-12">
+      <footer className="border-t border-border/50 bg-muted/30 py-16 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">
-              M
+          <div className="grid md:grid-cols-4 gap-12 mb-12">
+            <div className="space-y-4">
+              <Link to="/" className="flex items-center gap-3 group w-fit">
+                <img src="/mindspero-logo.svg" alt="MindSpero" className="w-10 h-10" />
+                <span className="font-bold text-lg text-foreground group-hover:text-primary transition">MindSpero</span>
+              </Link>
+              <p className="text-muted-foreground text-sm">AI-powered learning platform for modern students</p>
             </div>
-                <span className="font-bold text-foreground">MindSpero</span>
-              </div>
-              <p className="text-muted-foreground">
-                AI-powered learning for modern students
-              </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-foreground mb-4">Product</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><Link to="/" className="hover:text-primary">Features</Link></li>
-                <li><Link to="/pricing" className="hover:text-primary">Pricing</Link></li>
+            <div className="space-y-4">
+              <h4 className="font-bold text-foreground">Product</h4>
+              <ul className="space-y-2 text-sm">
+                <li><Link to="/" className="text-muted-foreground hover:text-primary transition">Features</Link></li>
+                <li><Link to="/pricing" className="text-muted-foreground hover:text-primary transition">Pricing</Link></li>
               </ul>
             </div>
-            <div>
-              <h4 className="font-bold text-foreground mb-4">Company</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">About</a></li>
-                <li><a href="#" className="hover:text-primary">Contact</a></li>
+            <div className="space-y-4">
+              <h4 className="font-bold text-foreground">Company</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="text-muted-foreground hover:text-primary transition">About</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary transition">Contact</a></li>
               </ul>
             </div>
-            <div>
-              <h4 className="font-bold text-foreground mb-4">Legal</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li><a href="#" className="hover:text-primary">Privacy</a></li>
-                <li><a href="#" className="hover:text-primary">Terms</a></li>
+            <div className="space-y-4">
+              <h4 className="font-bold text-foreground">Legal</h4>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="text-muted-foreground hover:text-primary transition">Privacy</a></li>
+                <li><a href="#" className="text-muted-foreground hover:text-primary transition">Terms</a></li>
               </ul>
             </div>
           </div>
-          <div className="border-t border-border pt-8 text-center text-muted-foreground">
-            <p>&copy; 2024 MindSpero. All rights reserved.</p>
+          <div className="border-t border-border/50 pt-8 text-center text-muted-foreground text-sm">
+            <p>&copy; 2026 MindSpero. All rights reserved. Built with ❤️ for students.</p>
           </div>
         </div>
       </footer>

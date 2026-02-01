@@ -4,11 +4,30 @@ from PyPDF2 import PdfReader
 from io import BytesIO
 import openai
 from app.config import get_settings
+import json
+from google.cloud import storage, texttospeech
 
 settings = get_settings()
 
 # Initialize OpenAI
 openai.api_key = settings.OPENAI_API_KEY
+
+# Initialize Google Cloud clients
+def _get_gcs_client():
+    """Initialize Google Cloud Storage client"""
+    if settings.GOOGLE_CLOUD_SERVICE_ACCOUNT_JSON:
+        return storage.Client.from_service_account_json(
+            settings.GOOGLE_CLOUD_SERVICE_ACCOUNT_JSON
+        )
+    return storage.Client(project=settings.GOOGLE_CLOUD_PROJECT_ID)
+
+def _get_tts_client():
+    """Initialize Google Cloud Text-to-Speech client"""
+    if settings.GOOGLE_CLOUD_SERVICE_ACCOUNT_JSON:
+        return texttospeech.TextToSpeechClient.from_service_account_json(
+            settings.GOOGLE_CLOUD_SERVICE_ACCOUNT_JSON
+        )
+    return texttospeech.TextToSpeechClient()
 
 
 class PDFService:
@@ -94,36 +113,40 @@ class AIService:
     
     @staticmethod
     def generate_audio_from_text(text: str, voice_type: str = "default") -> bytes:
-        """Generate audio file from text using TTS"""
+        """Generate audio file from text using Google Cloud Text-to-Speech"""
         try:
-            # Using OpenAI TTS API (Whisper API is for STT)
-            # For actual implementation, consider using Google Cloud TTS or AWS Polly
-            response = openai.Audio.transcriptions.create(
-                model="whisper-1",
-                file=BytesIO(text.encode()),
+            client = _get_tts_client()
+            
+            # Map voice types to Google Cloud voices
+            voice_map = {
+                "male": "en-US-Neural2-C",      # Male voice
+                "female": "en-US-Neural2-C",    # Female voice (using standard for now)
+                "default": "en-US-Neural2-A",   # Default natural voice
+            }
+            
+            voice_name = voice_map.get(voice_type, voice_map["default"])
+            
+            # Prepare synthesis request
+            synthesis_input = texttospeech.SynthesisInput(text=text)
+            voice = texttospeech.VoiceSelectionParams(
+                language_code="en-US",
+                name=voice_name,
+                ssml_gender=texttospeech.SsmlVoiceGender.NEUTRAL
             )
             
-            # Fallback: Using pyttsx3 for local generation
-            import pyttsx3
-            engine = pyttsx3.init()
+            audio_config = texttospeech.AudioConfig(
+                audio_encoding=texttospeech.AudioEncoding.MP3,
+                speaking_rate=1.0,  # 1.0 = normal speed
+            )
             
-            if voice_type == "male":
-                engine.setProperty("voice", engine.getProperty("voices")[0].id)
-            elif voice_type == "female":
-                engine.setProperty("voice", engine.getProperty("voices")[1].id)
+            # Generate audio
+            response = client.synthesize_speech(
+                input=synthesis_input,
+                voice=voice,
+                audio_config=audio_config,
+            )
             
-            engine.setProperty("rate", 150)  # Speed of speech
-            
-            # Save to temporary file
-            temp_path = "/tmp/audio_temp.mp3"
-            engine.save_to_file(text, temp_path)
-            engine.runAndWait()
-            
-            with open(temp_path, "rb") as f:
-                audio_bytes = f.read()
-            
-            os.remove(temp_path)
-            return audio_bytes
+            return response.audio_content
         except Exception as e:
             raise ValueError(f"Failed to generate audio: {str(e)}")
 
@@ -131,32 +154,43 @@ class AIService:
 class StorageService:
     @staticmethod
     def save_file(file_content: bytes, file_path: str) -> str:
-        """Save file locally or to cloud storage (S3)"""
+        """Save file to Google Cloud Storage"""
         try:
-            # For now, saving locally
-            # In production, integrate with AWS S3 or similar
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            with open(file_path, "wb") as f:
-                f.write(file_content)
+            client = _get_gcs_client()
+            bucket = client.bucket(settings.GOOGLE_CLOUD_STORAGE_BUCKET)
+            blob = bucket.blob(file_path)
+            
+            # Upload to GCS
+            blob.upload_from_string(
+                file_content,
+                content_type="application/octet-stream"
+            )
+            
             return file_path
         except Exception as e:
-            raise ValueError(f"Failed to save file: {str(e)}")
+            raise ValueError(f"Failed to save file to Google Cloud Storage: {str(e)}")
     
     @staticmethod
     def load_file(file_path: str) -> bytes:
-        """Load file from storage"""
+        """Load file from Google Cloud Storage"""
         try:
-            with open(file_path, "rb") as f:
-                return f.read()
+            client = _get_gcs_client()
+            bucket = client.bucket(settings.GOOGLE_CLOUD_STORAGE_BUCKET)
+            blob = bucket.blob(file_path)
+            
+            return blob.download_as_bytes()
         except Exception as e:
-            raise ValueError(f"Failed to load file: {str(e)}")
+            raise ValueError(f"Failed to load file from Google Cloud Storage: {str(e)}")
     
     @staticmethod
     def delete_file(file_path: str) -> bool:
-        """Delete file from storage"""
+        """Delete file from Google Cloud Storage"""
         try:
-            if os.path.exists(file_path):
-                os.remove(file_path)
+            client = _get_gcs_client()
+            bucket = client.bucket(settings.GOOGLE_CLOUD_STORAGE_BUCKET)
+            blob = bucket.blob(file_path)
+            
+            blob.delete()
             return True
         except Exception as e:
             return False

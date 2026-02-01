@@ -7,9 +7,7 @@ export default function AdminDashboard() {
       <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">
-              M
-            </div>
+            <img src="/mindspero-logo.svg" alt="MindSpero" className="w-8 h-8" />
             <span className="text-lg font-bold text-foreground">MindSpero</span>
           </Link>
           <div className="text-sm text-muted-foreground">Admin Dashboard</div>

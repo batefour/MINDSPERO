@@ -18,9 +18,7 @@ export default function AdminLogin() {
       <div className="border-b border-border bg-background/95 backdrop-blur-sm sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded-lg flex items-center justify-center text-white font-bold">
-              M
-            </div>
+            <img src="/mindspero-logo.svg" alt="MindSpero" className="w-8 h-8" />
             <span className="text-lg font-bold text-foreground">MindSpero</span>
           </Link>
         </div>

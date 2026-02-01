@@ -4,7 +4,7 @@ from app.database import get_db
 from app.schemas import UserRegister, UserLogin, UserResponse, TokenResponse
 from app.services import UserService
 from app.services.google_oauth_service import GoogleOAuthService
-from app.utils.auth import create_tokens
+from app.utils.auth import create_tokens, decode_token, get_current_user as get_current_user_dep
 from app.models import User
 import secrets
 import json
@@ -161,7 +161,7 @@ async def google_callback(
 
 @router.get("/me")
 def get_current_user(
-    current_user: User = Depends(lambda token: token),  # Will be implemented with dependency
+    current_user: User = Depends(get_current_user_dep),
     db: Session = Depends(get_db)
 ):
     """

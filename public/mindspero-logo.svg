@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <linearGradient id="brainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00D9FF;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#00FF88;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#FFD700;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Head Shape - Dark Blue -->
+  <path d="M 35 25 C 25 25 20 35 20 50 L 20 85 C 20 95 25 100 35 100 L 75 100 C 85 100 90 95 90 85 L 90 50 C 90 35 85 25 75 25 C 70 20 55 15 55 15 C 55 15 45 20 35 25 Z" fill="#001F5C" />
+  
+  <!-- Brain/Mind - Gradient -->
+  <ellipse cx="55" cy="55" rx="20" ry="24" fill="url(#brainGrad)" />
+  
+  <!-- Brain waves/details -->
+  <path d="M 42 45 Q 45 42 48 45 Q 51 48 54 45 Q 57 42 60 45" stroke="white" stroke-width="1" fill="none" opacity="0.7" />
+  <path d="M 42 58 Q 45 55 48 58 Q 51 61 54 58 Q 57 55 60 58" stroke="white" stroke-width="1" fill="none" opacity="0.6" />
+  
+  <!-- Spark Lines - Green/Yellow -->
+  <g>
+    <!-- Top vertical spark -->
+    <line x1="75" y1="15" x2="75" y2="0" stroke="#00FF88" stroke-width="2" stroke-linecap="round" />
+    <!-- Top right diagonal spark -->
+    <line x1="83" y1="23" x2="93" y2="13" stroke="#00FF88" stroke-width="2" stroke-linecap="round" />
+    <!-- Right horizontal spark -->
+    <line x1="90" y1="30" x2="105" y2="30" stroke="#00FF88" stroke-width="2" stroke-linecap="round" />
+    <!-- Spark center point -->
+    <circle cx="75" cy="20" r="2.5" fill="#00FF88" />
+  </g>
+</svg>

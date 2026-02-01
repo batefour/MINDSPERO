@@ -40,7 +40,12 @@ class Settings(BaseSettings):
     # Redis
     REDIS_URL: str = "redis://localhost:6379/0"
     
-    # AWS S3
+    # Google Cloud Storage
+    GOOGLE_CLOUD_PROJECT_ID: str = ""
+    GOOGLE_CLOUD_STORAGE_BUCKET: str = "mindspero-files"
+    GOOGLE_CLOUD_SERVICE_ACCOUNT_JSON: str = ""
+    
+    # AWS S3 (deprecated - using Google Cloud instead)
     AWS_ACCESS_KEY_ID: str = ""
     AWS_SECRET_ACCESS_KEY: str = ""
     AWS_S3_BUCKET_NAME: str = "ai-education-platform"
