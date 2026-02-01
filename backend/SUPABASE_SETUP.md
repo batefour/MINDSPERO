@@ -1,47 +1,151 @@
-# Supabase & Google OAuth Setup Guide
+# Supabase Database Setup Guide
 
 ## Overview
-This guide covers setting up Supabase PostgreSQL database and Google OAuth authentication for the MindSpero backend.
+Your MindSpero app uses **Supabase PostgreSQL** as the database. The database URL is already configured in `backend/.env`:
+
+```
+DATABASE_URL=postgresql://postgres:rxoH3hbwVtWd9UhQ@db.xlmyrawojjitympyubny.supabase.co:5432/postgres
+```
+
+## Step 1: Create Tables in Supabase
+
+1. Open your **Supabase Dashboard**: https://app.supabase.com
+2. Select your project (MindSpero)
+3. Navigate to **SQL Editor**
+4. Click **New Query**
+5. Open `backend/scripts/supabase_schema.sql` and copy the entire SQL script
+6. Paste it into the Supabase SQL Editor
+7. Click **Run** to create all tables and indexes
+
+Expected output:
+```
+Query successful (Tables created: users, subscriptions, uploaded_files, summaries, audio_files, payments)
+```
+
+## Step 2: Register a User
+
+Once tables are created, you can register users via the API:
+
+```bash
+curl -X POST http://localhost:8000/api/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Alice",
+    "email": "alice@example.com",
+    "password": "StrongPassword123"
+  }'
+```
+
+Response:
+```json
+{
+  "access_token": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+  "refresh_token": "eyJ0eXAiOiJKV1QiLCJhbGc...",
+  "token_type": "bearer",
+  "user": {
+    "id": 1,
+    "name": "Alice",
+    "email": "alice@example.com",
+    "role": "user",
+    "is_active": true,
+    "created_at": "2026-02-01T14:30:00Z"
+  }
+}
+```
+
+## Step 3: Verify User in Supabase
+
+1. Go to your Supabase Dashboard
+2. Navigate to **Table Editor**
+3. Click on **users** table
+4. You should see your registered user(s) there
+
+## Step 4: Create an Admin User (Optional)
+
+To create an admin user directly in the database:
+
+```bash
+ADMIN_EMAIL=admin@example.com ADMIN_PASSWORD=StrongAdminPass123 python backend/scripts/create_admin.py
+```
+
+Or:
+```bash
+python backend/scripts/create_admin.py admin@example.com StrongAdminPass123 "Admin Name"
+```
+
+Verify in Supabase:
+- Go to **Table Editor** → **users**
+- Check the **role** column — admin users should have `role = 'admin'`
+
+## Step 5: Start the Development Server
+
+```bash
+cd /workspaces/MINDSPERO
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Navigate to http://localhost:8000/docs to see the API documentation.
+
+## Troubleshooting
+
+### Issue: "Network is unreachable" when running init_db.py
+**Solution**: This is expected in a dev container. Use the SQL Editor method instead (Step 1).
+
+### Issue: "No such table: users" when registering
+**Solution**: Make sure you've run the SQL script in Supabase SQL Editor (Step 1).
+
+### Issue: "Email already registered"
+**Solution**: The email exists. Use a different email or check the **users** table in Supabase.
+
+### Issue: "Invalid password or email"
+**Solution**: Double-check your email and password; they are case-sensitive.
+
+## Architecture Overview
+
+```
+┌─────────────────┐
+│   React Client  │
+│  (localhost:3000)
+└────────┬────────┘
+         │
+         │ HTTP
+         │
+┌────────▼────────┐
+│   FastAPI App   │
+│  (localhost:8000)
+└────────┬────────┘
+         │
+         │ PostgreSQL
+         │
+┌────────▼─────────────────────┐
+│    Supabase PostgreSQL        │
+│ (db.xlmyrawojjitympyubny.     │
+│  supabase.co:5432)            │
+└───────────────────────────────┘
+```
+
+## Database Schema
+
+- **users**: User accounts, emails, password hashes, roles
+- **subscriptions**: Trial/paid plans, expiry dates
+- **uploaded_files**: PDF/documents uploaded by users
+- **summaries**: AI-generated summaries of documents
+- **audio_files**: TTS audio versions of summaries
+- **payments**: Paystack/payment transaction records
+
+All tables use `ON DELETE CASCADE` so deleting a user removes all related records.
+
+## Next Steps
+
+- Test user registration & login endpoints
+- Implement frontend auth forms
+- Add payment processing (Paystack integration)
+- Deploy to production (Netlify/Vercel for frontend, managed PostgreSQL for backend)
 
 ---
 
-## Part 1: Supabase PostgreSQL Setup
+**Questions?** Check `backend/app/routes/auth.py` for registration/login logic, or `backend/app/services/__init__.py` for database operations.
 
-### Step 1: Create Supabase Account
-1. Go to [https://supabase.com](https://supabase.com)
-2. Click **"Start your project"**
-3. Sign up with email or GitHub
-4. Create a new organization and project
-
-### Step 2: Configure Project
-1. **Project Settings** → **Database**
-2. Set region (e.g., us-east-1)
-3. Set database password (save this!)
-4. Wait for project to be provisioned (~2 minutes)
-
-### Step 3: Get Database Credentials
-1. In Supabase Dashboard: **Settings** → **Database**
-2. Copy the connection string:
-   ```
-   postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres
-   ```
-3. Update `.env`:
-   ```
-   DATABASE_URL=postgresql://postgres:[PASSWORD]@[HOST]:5432/postgres
-   SUPABASE_URL=https://[PROJECT_ID].supabase.co
-   SUPABASE_ANON_KEY=[ANON_KEY]
-   SUPABASE_SERVICE_ROLE_KEY=[SERVICE_ROLE_KEY]
-   ```
-
-### Step 4: Get Supabase API Keys
-1. **Settings** → **API**
-2. Copy:
-   - **Project URL** → `SUPABASE_URL`
-   - **Anon Key** → `SUPABASE_ANON_KEY`
-   - **Service Role Key** → `SUPABASE_SERVICE_ROLE_KEY`
-
-### Step 5: Create Tables
-Run the SQL migrations in Supabase SQL Editor:
 
 ```sql
 -- Users table

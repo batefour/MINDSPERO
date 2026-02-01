@@ -40,19 +40,44 @@ class User(Base):
     google_id = Column(String(255), unique=True, nullable=True, index=True)
     google_picture = Column(String(500), nullable=True)
     
-    # Relationships
-    subscriptions = relationship("Subscription", back_populates="user")
-    uploaded_files = relationship("UploadedFile", back_populates="user")
-    summaries = relationship("Summary", back_populates="user")
-    audio_files = relationship("AudioFile", back_populates="user")
-    payments = relationship("Payment", back_populates="user")
+    # Relationships (cascade deletes when user is removed)
+    subscriptions = relationship(
+        "Subscription",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
+    uploaded_files = relationship(
+        "UploadedFile",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
+    summaries = relationship(
+        "Summary",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
+    audio_files = relationship(
+        "AudioFile",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
+    payments = relationship(
+        "Payment",
+        back_populates="user",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
 
 
 class Subscription(Base):
     __tablename__ = "subscriptions"
     
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     plan = Column(Enum(SubscriptionPlanEnum), default=SubscriptionPlanEnum.FREE)
     status = Column(Enum(SubscriptionStatusEnum), default=SubscriptionStatusEnum.TRIAL)
     start_date = Column(DateTime(timezone=True), server_default=func.now())
@@ -71,7 +96,7 @@ class UploadedFile(Base):
     __tablename__ = "uploaded_files"
     
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     file_name = Column(String(255), nullable=False)
     file_path = Column(String(512), nullable=False)
     file_size = Column(Integer)  # In bytes
@@ -81,15 +106,20 @@ class UploadedFile(Base):
     
     # Relationships
     user = relationship("User", back_populates="uploaded_files")
-    summaries = relationship("Summary", back_populates="uploaded_file")
+    summaries = relationship(
+        "Summary",
+        back_populates="uploaded_file",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
 
 
 class Summary(Base):
     __tablename__ = "summaries"
     
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    file_id = Column(Integer, ForeignKey("uploaded_files.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    file_id = Column(Integer, ForeignKey("uploaded_files.id", ondelete="CASCADE"), nullable=False)
     summary_text = Column(Text, nullable=False)
     summary_length = Column(String(50))  # short, medium, long
     processing_status = Column(String(50), default="completed")  # pending, processing, completed, failed
@@ -98,15 +128,20 @@ class Summary(Base):
     # Relationships
     user = relationship("User", back_populates="summaries")
     uploaded_file = relationship("UploadedFile", back_populates="summaries")
-    audio_files = relationship("AudioFile", back_populates="summary")
+    audio_files = relationship(
+        "AudioFile",
+        back_populates="summary",
+        cascade="all, delete-orphan",
+        passive_deletes=True,
+    )
 
 
 class AudioFile(Base):
     __tablename__ = "audio_files"
     
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    summary_id = Column(Integer, ForeignKey("summaries.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
+    summary_id = Column(Integer, ForeignKey("summaries.id", ondelete="CASCADE"), nullable=False)
     audio_path = Column(String(512), nullable=False)
     audio_duration = Column(Integer, nullable=True)  # Duration in seconds
     voice_type = Column(String(50), default="default")  # default, male, female, etc.
@@ -122,7 +157,7 @@ class Payment(Base):
     __tablename__ = "payments"
     
     id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
     paystack_reference = Column(String(255), nullable=True, unique=True)
     amount = Column(Float, nullable=False)  # In kobo (100 kobo = 1 naira)
     currency = Column(String(10), default="NGN")

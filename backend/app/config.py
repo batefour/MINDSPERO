@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings
 from typing import List
 from functools import lru_cache
+from pathlib import Path
 
 
 class Settings(BaseSettings):
@@ -32,6 +33,7 @@ class Settings(BaseSettings):
     # Paystack
     PAYSTACK_SECRET_KEY: str = ""
     PAYSTACK_PUBLIC_KEY: str = ""
+    PAYSTACK_WEBHOOK_URL: str = ""
     PAYSTACK_WEBHOOK_SECRET: str = ""
     
     # OpenAI
@@ -66,7 +68,10 @@ class Settings(BaseSettings):
     BONUS_TRIAL_DAYS: int = 30  # Extra month for paid subscription
     
     class Config:
-        env_file = ".env"
+        # Load .env located in the backend folder regardless of cwd
+        env_file = str(Path(__file__).resolve().parent.parent / ".env")
+        env_file_encoding = "utf-8"
+        extra = "allow"
 
 
 @lru_cache()

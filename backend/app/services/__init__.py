@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 from datetime import datetime, timedelta
-from app.models import User, Subscription, SubscriptionStatusEnum, SubscriptionPlanEnum, Payment
-from app.utils.auth import hash_password, verify_password
+from app.models import User, Subscription, SubscriptionStatusEnum, SubscriptionPlanEnum, Payment, RoleEnum
+from app.utils.password import hash_password, verify_password
 from app.config import get_settings
 from sqlalchemy import func
 
@@ -10,12 +10,16 @@ settings = get_settings()
 
 class UserService:
     @staticmethod
-    def create_user(db: Session, name: str, email: str, password: str) -> User:
-        """Create a new user with free trial subscription"""
+    def create_user(db: Session, name: str, email: str, password: str, role: RoleEnum = RoleEnum.USER) -> User:
+        """Create a new user with free trial subscription.
+
+        `role` may be supplied to create admins via helper scripts.
+        """
         user = User(
             name=name,
             email=email,
             password_hash=hash_password(password),
+            role=role,
         )
         db.add(user)
         db.flush()
